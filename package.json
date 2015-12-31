@@ -1,0 +1,21 @@
+{
+  "name": "tapas-externals",
+  "version": "0.1.0",
+  "description": "lightweight implementation of amd loader which resolves npm dependencies to cdn path",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TapasFE/npm-cdn-amd-loader.git"
+  },
+  "keywords": [
+    "amd",
+    "loader",
+    "npm",
+    "cdn"
+  ],
+  "author": "Lui",
+  "license": "ISC"
+}
