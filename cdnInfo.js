@@ -28,9 +28,9 @@ if("object"==typeof exports&&"undefined"!=typeof module)
       "minUrl": "http://cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js",
       "version": "3.10.1"
     },
-    "immuntable": {
-      "name": "immuntable",
-      "global": "Immuntable",
+    "immutable": {
+      "name": "immutable",
+      "global": "Immutable",
       "url": "http://cdn.bootcss.com/immutable/3.7.5/immutable.js",
       "minUrl": "http://cdn.bootcss.com/immutable/3.7.5/immutable.min.js",
       "version": "3.7.5"
