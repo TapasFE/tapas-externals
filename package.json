@@ -4,7 +4,8 @@
   "description": "lightweight implementation of amd loader which resolves npm dependencies to cdn path",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tapas-build ./src/index.js ./ -p"
   },
   "repository": {
     "type": "git",

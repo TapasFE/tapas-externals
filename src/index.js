@@ -102,14 +102,24 @@ export default ((win, doc, undef) => {
 
   win.define = function(path, deps, factory) {
     var p, d, f;
-    if (typeof path !== 'string') {
-      p = getCurrentScript();
-      d = path;
-      f = deps;
-    } else {
-      p = path;
-      d = deps;
-      f = factory;
+    switch(arguments.length){
+      case 0:
+        throw new Error('Must provide at least 1 argument');
+      case 1:
+        p = getCurrentScript();
+        d = [];
+        f = arguments[0];
+        break;
+      case 2:
+        p = getCurrentScript();
+        d = arguments[0];
+        f = arguments[1];
+        break;
+      case 3:
+        p = arguments[0];
+        d = arguments[1];
+        f = arguments[2];
+        break;
     }
     d = d.map(dep => {
       if(!/^http:|https:/i.test(dep)) {

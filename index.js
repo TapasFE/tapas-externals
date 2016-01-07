@@ -56,19 +56,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _cdnInfo = __webpack_require__(1);
-
-	var _cdnInfo2 = _interopRequireDefault(_cdnInfo);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	exports.default = (function (win, doc, undef) {
+	var cdnInfo = __webpack_require__(1);
+	(function (win, doc, undef) {
 	  function getCurrentScript() {
 	    //取得正在解析的script节点
 	    if (doc.currentScript) {
@@ -148,8 +139,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function compileReadyModules() {
 	      var l = Object.keys(uncompiled).length;
 	      for (var id in uncompiled) {
-	        var module = uncompiled[id];
-	        if (checkDepsReady(module)) module.depsCompiled();
+	        var _module = uncompiled[id];
+	        if (checkDepsReady(_module)) _module.depsCompiled();
 	      }
 	      if (l > Object.keys(uncompiled).length) compileReadyModules();
 	    }
@@ -178,18 +169,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  win.define = function (path, deps, factory) {
 	    var p, d, f;
-	    if (typeof path !== 'string') {
-	      p = getCurrentScript();
-	      d = path;
-	      f = deps;
-	    } else {
-	      p = path;
-	      d = deps;
-	      f = factory;
+	    switch (arguments.length) {
+	      case 0:
+	        throw new Error('Must provide at least 1 argument');
+	      case 1:
+	        p = getCurrentScript();
+	        d = [];
+	        f = arguments[0];
+	        break;
+	      case 2:
+	        p = getCurrentScript();
+	        d = arguments[0];
+	        f = arguments[1];
+	        break;
+	      case 3:
+	        p = arguments[0];
+	        d = arguments[1];
+	        f = arguments[2];
+	        break;
 	    }
 	    d = d.map(function (dep) {
 	      if (!/^http:|https:/i.test(dep)) {
-	        if (_cdnInfo2.default[dep]) return _cdnInfo2.default[dep].minUrl;else throw new Error('Can\'t find dependency in cdn');
+	        if (cdnInfo[dep]) return cdnInfo[dep].minUrl;else throw new Error('Can\'t find dependency in cdn');
 	      }
 	      return dep;
 	    });
@@ -198,16 +199,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  win.define.amd = true;
 	})(window, document);
 
+	module.exports = {
+	  cdnInfo: cdnInfo
+	};
+
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
+	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+	if ("object" == ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module) module.exports = {
 	  "react": {
 	    "name": "react",
 	    "global": "React",
@@ -236,9 +240,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "minUrl": "http://cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js",
 	    "version": "3.10.1"
 	  },
-	  "immuntable": {
-	    "name": "immuntable",
-	    "global": "Immuntable",
+	  "immutable": {
+	    "name": "immutable",
+	    "global": "Immutable",
 	    "url": "http://cdn.bootcss.com/immutable/3.7.5/immutable.js",
 	    "minUrl": "http://cdn.bootcss.com/immutable/3.7.5/immutable.min.js",
 	    "version": "3.7.5"
