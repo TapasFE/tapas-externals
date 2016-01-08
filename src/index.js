@@ -130,7 +130,7 @@ export default ((win, doc, undef) => {
     });
     new Module(p, d, f);
   };
-  win.define.amd = true;
+  win.define.amd = {};
 })(window, document);
 
 export cdnInfo;
