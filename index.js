@@ -56,10 +56,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.cdnInfo = undefined;
+
+	var _cdnInfo = __webpack_require__(1);
+
+	var _cdnInfo2 = _interopRequireDefault(_cdnInfo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-	var cdnInfo = __webpack_require__(1);
-	(function (win, doc, undef) {
+	exports.default = (function (win, doc, undef) {
 	  function getCurrentScript() {
 	    //取得正在解析的script节点
 	    if (doc.currentScript) {
@@ -139,8 +149,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function compileReadyModules() {
 	      var l = Object.keys(uncompiled).length;
 	      for (var id in uncompiled) {
-	        var _module = uncompiled[id];
-	        if (checkDepsReady(_module)) _module.depsCompiled();
+	        var module = uncompiled[id];
+	        if (checkDepsReady(module)) module.depsCompiled();
 	      }
 	      if (l > Object.keys(uncompiled).length) compileReadyModules();
 	    }
@@ -190,18 +200,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    d = d.map(function (dep) {
 	      if (!/^http:|https:/i.test(dep)) {
-	        if (cdnInfo[dep]) return cdnInfo[dep].minUrl;else throw new Error('Can\'t find dependency in cdn');
+	        if (_cdnInfo2.default[dep]) return _cdnInfo2.default[dep].minUrl;else throw new Error('Can\'t find dependency in cdn');
 	      }
 	      return dep;
 	    });
 	    new Module(p, d, f);
 	  };
-	  win.define.amd = true;
+	  win.define.amd = {};
 	})(window, document);
 
-	module.exports = {
-	  cdnInfo: cdnInfo
-	};
+	exports.cdnInfo = _cdnInfo2.default;
 
 /***/ },
 /* 1 */
@@ -213,6 +221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	if ("object" == ( false ? "undefined" : _typeof(exports)) && "undefined" != typeof module) module.exports = {
 	  "react": {
+	    "moduleType": "umd",
 	    "name": "react",
 	    "global": "React",
 	    "url": "http://cdn.bootcss.com/react/0.14.3/react.js",
@@ -220,6 +229,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "0.14.3"
 	  },
 	  "react-dom": {
+	    "moduleType": "umd",
 	    "name": "react-dom",
 	    "global": "ReactDOM",
 	    "url": "http://cdn.bootcss.com/react/0.14.3/react-dom.js",
@@ -227,6 +237,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "0.14.3"
 	  },
 	  "superagent": {
+	    "moduleType": "umd",
 	    "name": "superagent",
 	    "global": "superagent",
 	    "url": "http://cdn.bootcss.com/superagent/1.2.0/superagent.js",
@@ -234,6 +245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "1.2.0"
 	  },
 	  "lodash": {
+	    "moduleType": "umd",
 	    "name": "lodash",
 	    "global": "_",
 	    "url": "http://cdn.bootcss.com/lodash.js/3.10.1/lodash.js",
@@ -241,6 +253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "3.10.1"
 	  },
 	  "immutable": {
+	    "moduleType": "umd",
 	    "name": "immutable",
 	    "global": "Immutable",
 	    "url": "http://cdn.bootcss.com/immutable/3.7.5/immutable.js",
@@ -248,6 +261,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "3.7.5"
 	  },
 	  "react-router": {
+	    "moduleType": "umd",
 	    "name": "react-router",
 	    "global": "ReactRouter",
 	    "url": "http://cdn.bootcss.com/react-router/1.0.2/ReactRouter.js",
@@ -255,11 +269,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    "version": "1.0.2"
 	  },
 	  "jquery": {
+	    "moduleType": "umd",
 	    "name": "jquery",
 	    "global": "$",
 	    "url": "http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.js",
 	    "minUrl": "http://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js",
 	    "version": "3.0.0-alpha1"
+	  },
+	  "moment": {
+	    "moduleType": "umd",
+	    "name": "moment",
+	    "global": "moment",
+	    "url": "http://cdn.bootcss.com/moment.js/2.10.6/moment.js",
+	    "minUrl": "http://cdn.bootcss.com/moment.js/2.10.6/moment.min.js",
+	    "version": "2.10.6"
 	  }
 	};
 

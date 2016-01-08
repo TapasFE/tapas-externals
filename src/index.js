@@ -1,4 +1,4 @@
-import cdnInfo from '../cdnInfo';
+import cdnInfo from './cdnInfo';
 export default ((win, doc, undef) => {
   function getCurrentScript() {
     //取得正在解析的script节点
@@ -133,4 +133,4 @@ export default ((win, doc, undef) => {
   win.define.amd = {};
 })(window, document);
 
-export cdnInfo;
+export {cdnInfo};
