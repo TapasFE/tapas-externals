@@ -83,17 +83,18 @@ export default ((win, doc, undef) => {
     this.id = path;
     this.deps = deps;
     this.factory = factory;
-    uncompiled[this.id] = this;
     this.depsCompiled = function() {
       delete uncompiled[this.id];
       cache[this.id] = self;
       return self.exports = factory(...this.deps.map(dep => cache[dep].exports));
     }
-    if (deps.length === 0) {
+    if(checkDepsReady(this)) {
       this.depsCompiled();
       compileReadyModules();
+    } else {
+      uncompiled[this.id] = this;
+      loadDeps();
     }
-    loadDeps();
   }
 
   Module.prototype = {
